@@ -93,7 +93,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
             rel="noopener noreferrer"
             className="inline-block text-blue-600 underline font-medium"
           >
-            📄 {message.filename || 'Invoice_Label'}
+            📄 {message.filename || 'Invoice_Label_Sample'}
           </a>
         ) : (
           <div className="text-sm md:text-base">{renderFormattedMessage(message.content)}</div>

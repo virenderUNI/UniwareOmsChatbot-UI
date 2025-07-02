@@ -2,12 +2,18 @@
  * API service for chat functionality
  */
 
-export const initiateChat = async (): Promise<{ sessionId: string }> => {
+import { ENDPOINTS } from "../api/endpoints"
+
+export const initiateChat = async (tenantCode:string,sessionId:string,userId:string,accessToken:string): Promise<{ message:string ,sessionId: string}> => {
   try {
-    const response = await fetch('http://localhost:8000/chat/initiate', {
+  const response = await fetch(ENDPOINTS.CHAT_INITIATE, {
       method: 'POST',
+      credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',
+        'X-Tenant-Code': tenantCode || '',
+        'X-Chat-Session-Id': sessionId,
+        'X-User-Id': userId || '',
+        'x-access-token': accessToken || ''
       }
     });
 
@@ -24,13 +30,21 @@ export const initiateChat = async (): Promise<{ sessionId: string }> => {
 // Function to send a message and get a response
 export const sendMessage = async (
   message: string,
-  sessionId?: string
+  sessionId: string,
+  userId:string,
+  tenantCode:string,
+  accessToken:string
 ): Promise<{ response: string , type: 'text' | 'pdf' }> => {
   try {
-    const response = await fetch('http://localhost:8000/chat', {
+    const response = await fetch(ENDPOINTS.CHAT, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        'X-Tenant-Code': tenantCode || '',
+        'X-Chat-Session-Id': sessionId,
+        'X-User-Id': userId || '',
+        'x-access-token': accessToken || ''
       },
       body: JSON.stringify({
         messages: [
