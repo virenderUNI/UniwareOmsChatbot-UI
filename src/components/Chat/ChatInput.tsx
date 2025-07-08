@@ -27,7 +27,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, disabled }) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Type your message..."
-        className="flex-grow px-4 py-2 rounded-l-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+        className="flex-grow px-4 py-2 rounded-l-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-bg-customblue focus:border-transparent transition-all duration-200"
         disabled={disabled}
       />
       <button
@@ -35,11 +35,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, disabled }) => {
         className={`flex items-center justify-center rounded-r-full p-2 px-4 border border-l-0 ${
           disabled || !message.trim()
             ? 'bg-gray-300 cursor-not-allowed'
-            : 'bg-blue-600 hover:bg-blue-700'
+            : 'bg-customblue hover:bg-customblue'
         } text-white transition-colors duration-200`}
         disabled={disabled || !message.trim()}
       >
-        <SendIcon size={18} />
+        <SendIcon size={20} />
       </button>
     </form>
   );

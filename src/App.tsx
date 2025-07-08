@@ -9,8 +9,8 @@ const AppContent: React.FC = () => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4"
-      style={{ height: '100vh',overflow:"hidden" }} 
+    <div className="bg-gray-100 flex items-center justify-center p-4"
+      style={{ height: '100dvh',overflow:"hidden" }} 
     >
       <div
         className="w-full max-w-3xl sm:h-[600px] h-[calc(100dvh-16px)] rounded-lg overflow-hidden shadow-xl"
@@ -32,8 +32,8 @@ const AppContent: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <AppContent />
           <Toaster
           position="top-center"
@@ -45,8 +45,8 @@ const App: React.FC = () => {
             },
           }}
           />
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 };
 

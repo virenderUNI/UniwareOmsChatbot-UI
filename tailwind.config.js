@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
       },
+      colors: {
+        customblue: '#1f87c2',
+        darkgray: '#212121',
+      },
     },
   },
   plugins: [],

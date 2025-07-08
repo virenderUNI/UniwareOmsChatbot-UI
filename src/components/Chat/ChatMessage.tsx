@@ -81,8 +81,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
       <div
         className={`max-w-[80%] rounded-lg px-4 py-2 shadow-sm animate-fadeIn ${
           isUser
-            ? 'bg-blue-600 text-white rounded-tr-none ml-auto'
-            : 'bg-gray-100 text-gray-800 rounded-tl-none mr-auto'
+            ? 'bg-customblue text-white rounded-tr-none ml-auto'
+            : 'bg-gray-100 text-darkgray rounded-tl-none mr-auto'
         }`}
       >
         {/* PDF Link or Text Message */}

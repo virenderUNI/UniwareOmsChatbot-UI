@@ -40,3 +40,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #333;
 }
+
+html,
+body,
+#root {
+  height: 100dvh;
+  overflow: hidden;
+}

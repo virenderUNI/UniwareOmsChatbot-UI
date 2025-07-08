@@ -5,7 +5,7 @@ import ChatInput from './ChatInput';
 import { Message, ChatState } from '../../types/chat';
 import { initiateChat, sendMessage } from '../../services/chatApi';
 import { Loader } from 'lucide-react';
-import logo from '../../assets/uniware.png';
+import logo from '../../assets/unicommerce.svg';
 import { useAuth } from '../AuthContext';
 import toast from 'react-hot-toast';
 
@@ -16,7 +16,7 @@ const ChatContainer: React.FC = () => {
     error: null,
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { userId, tenantCode, sessionId, isAuthenticated, accessToken } = useAuth();
+  const { userId, tenantCode, sessionId, isAuthenticated } = useAuth();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -27,15 +27,14 @@ const ChatContainer: React.FC = () => {
   }, [chatState.messages]);
 
   useEffect(() => {
-    if (isAuthenticated && userId && tenantCode && sessionId && accessToken) {
+    if (isAuthenticated && userId && tenantCode && sessionId) {
       const startChat = async () => {
         try {
           setChatState((prev) => ({ ...prev, isLoading: true }));
           const { message, sessionId: newSessionId } = await initiateChat(
             tenantCode,
             sessionId,
-            userId,
-            accessToken
+            userId
           );
 
           if (newSessionId) {
@@ -53,7 +52,7 @@ const ChatContainer: React.FC = () => {
 
       startChat();
     }
-  }, [isAuthenticated, userId, tenantCode, sessionId, accessToken]);
+  }, [isAuthenticated, userId, tenantCode, sessionId]);
 
   const addMessage = (
     content: string,
@@ -80,8 +79,7 @@ const ChatContainer: React.FC = () => {
       !isAuthenticated ||
       !sessionId ||
       !userId ||
-      !tenantCode ||
-      !accessToken
+      !tenantCode
     ) {
       toast.error('Please log in to send messages.');
       return;
@@ -96,7 +94,6 @@ const ChatContainer: React.FC = () => {
         sessionId,
         userId,
         tenantCode,
-        accessToken
       );
       addMessage(response, 'bot', type);
     } catch (error) {
@@ -109,11 +106,11 @@ const ChatContainer: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="bg-blue-600 text-white p-4 flex items-center">
+      <div className="text-bg-customblue pl-4 pr-4 flex items-center"   style={{ background: 'linear-gradient(to right, #e3f3f9, #1f87c2)' }}>
         <img
           src={logo}
           alt="Uniware Logo"
-          className="h-9 w-15 mr-2 rounded"
+          className="h-20 w-20 mr-2 rounded"
           loading="lazy"
         />
         <h2 className="text-lg font-semibold">Uniware OMS Assistant</h2>

@@ -1,5 +1,5 @@
 export const API_BASE_URL = "https://r28fisu1gi.execute-api.ap-south-1.amazonaws.com";
-export const STAGING_API_BASE_URL = "http://localhost:8000";
+export const STAGING_API_BASE_URL = "http://localhost:8001";
 
 export const ENDPOINTS = {
     CHAT_INITIATE: `${API_BASE_URL}/chat/initiate`,

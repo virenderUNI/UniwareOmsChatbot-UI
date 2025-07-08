@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import logo from '../assets/uniware.png';
+import logo from '../assets/unicommerce.svg';
 import { useAuth } from './AuthContext';
 import { ENDPOINTS } from '../api/endpoints';
 
@@ -9,7 +9,6 @@ interface LoginResponse {
   sessionId?: string;
   detail?: string;
   message?: string;
-  accessToken?: string;
 }
 
 const LoginPage: React.FC = () => {
@@ -31,8 +30,8 @@ const LoginPage: React.FC = () => {
       });
       const data: LoginResponse = await response.json();
 
-      if (response.ok && data.userId && data.sessionId && data.accessToken) {
-        login(data.userId, tenantCode, data.sessionId, data.accessToken);
+      if (response.ok && data.userId && data.sessionId) {
+        login(data.userId, tenantCode, data.sessionId);
       } else {
         throw new Error(data.detail || 'Invalid credentials');
       }
@@ -46,9 +45,11 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="bg-blue-600 text-white p-4 flex items-center">
-        <img src={logo} alt="Uniware Logo" className="h-9 w-15 mr-2 rounded" loading="lazy" />
-        <h2 className="text-lg font-semibold">Uniware OMS Login</h2>
+      <div className="text-white pr-4 pl-4 flex items-center" style={{ background: 'linear-gradient(to right, #e3f3f9, #1f87c2)' }}>
+        <img src={logo} alt="Uniware Logo" className="h-20 w-20 mr-2 rounded" loading="lazy" />
+      <h2 className="text-lg font-semibold" style={{ color: '#212121' }}>
+        Uniware OMS Login
+      </h2>
       </div>
       <div className="flex-grow p-6 flex items-center justify-center">
         <div className="w-full max-w-sm">
@@ -97,7 +98,7 @@ const LoginPage: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-400 disabled:cursor-not-allowed"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-customblue hover:bg-customblue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-400 disabled:cursor-not-allowed"
               disabled={isLoading}
             >
               {isLoading ? (

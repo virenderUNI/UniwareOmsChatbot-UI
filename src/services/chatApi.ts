@@ -4,7 +4,7 @@
 
 import { ENDPOINTS } from "../api/endpoints"
 
-export const initiateChat = async (tenantCode:string,sessionId:string,userId:string,accessToken:string): Promise<{ message:string ,sessionId: string}> => {
+export const initiateChat = async (tenantCode:string,sessionId:string,userId:string): Promise<{ message:string ,sessionId: string}> => {
   try {
   const response = await fetch(ENDPOINTS.CHAT_INITIATE, {
       method: 'POST',
@@ -12,8 +12,7 @@ export const initiateChat = async (tenantCode:string,sessionId:string,userId:str
       headers: {
         'X-Tenant-Code': tenantCode || '',
         'X-Chat-Session-Id': sessionId,
-        'X-User-Id': userId || '',
-        'x-access-token': accessToken || ''
+        'X-User-Id': userId || ''
       }
     });
 
@@ -33,7 +32,6 @@ export const sendMessage = async (
   sessionId: string,
   userId:string,
   tenantCode:string,
-  accessToken:string
 ): Promise<{ response: string , type: 'text' | 'pdf' }> => {
   try {
     const response = await fetch(ENDPOINTS.CHAT, {
@@ -43,8 +41,7 @@ export const sendMessage = async (
         'Content-Type': 'application/json',
         'X-Tenant-Code': tenantCode || '',
         'X-Chat-Session-Id': sessionId,
-        'X-User-Id': userId || '',
-        'x-access-token': accessToken || ''
+        'X-User-Id': userId || ''
       },
       body: JSON.stringify({
         messages: [
